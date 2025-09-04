@@ -129,4 +129,4 @@ docker run -p 3000:3000 task-manager-app
 
 ## 📜 License
 
-MIT License © 2025 [Your Name]
+MIT License © 2025 Manish Mahto
