@@ -3,7 +3,7 @@ import { getCurrentUser } from '@/lib/auth';
 import Task from '@/models/Task';
 import dbConnect from '@/lib/db';
 import { taskSchema } from '@/lib/validators';
-import { z } from 'zod';
+
 
 
 
@@ -44,15 +44,10 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
     );
     
     return NextResponse.json({ task: updatedTask });
-  } catch (error) {
-    console.error('Update task error:', error);
+  } catch {
+    //console.error('Update task error:', error);
     
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Invalid input', details: error.errors },
-        { status: 400 }
-      );
-    }
+ 
     
     return NextResponse.json(
       { error: 'Internal server error' },

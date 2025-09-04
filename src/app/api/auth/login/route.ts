@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateUser, generateToken, setAuthCookie } from '@/lib/auth';
 import { loginSchema } from '@/lib/validators';
-import { z } from 'zod';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -35,15 +35,10 @@ export async function POST(request: NextRequest) {
     
     setAuthCookie(response, token);
     return response;
-  } catch (error) {
-    console.error('Login error:', error);
+  } catch {
+    //console.error('Login error:', error);
     
-    if (error instanceof z.ZodError) {
-         return NextResponse.json(
-           { error: 'Invalid input', details: error.errors },
-           { status: 400 }
-         );
-       }
+   
        
 
     return NextResponse.json(

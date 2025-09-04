@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/lib/auth';
 import Task from '@/models/Task';
 import dbConnect from '@/lib/db';
 import { taskSchema } from '@/lib/validators';
-import { z } from 'zod';
+
 // GET /api/tasks - Get all tasks for the current user with optional filtering
 export async function GET(request: NextRequest) {
   try {
@@ -87,15 +87,10 @@ export async function POST(request: NextRequest) {
     });
     
     return NextResponse.json({ task }, { status: 201 });
-  } catch (error) {
-    console.error('Create task error:', error);
+  } catch  {
+   // console.error('Create task error:', error);
     
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Invalid input', details: error.errors },
-        { status: 400 }
-      );
-    }
+    
     
     return NextResponse.json(
       { error: 'Internal server error' },

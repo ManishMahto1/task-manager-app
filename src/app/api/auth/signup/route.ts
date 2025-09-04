@@ -3,7 +3,7 @@ import dbConnect from '@/lib/db';
 import User from '@/models/User';
 import { generateToken, setAuthCookie } from '@/lib/auth';
 import { registerSchema } from '@/lib/validators';
-import { z } from 'zod';
+
 export async function POST(request: NextRequest) {
   try {
     await dbConnect();
@@ -46,12 +46,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Signup error:', error);
     
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Invalid input', details: error.errors },
-        { status: 400 }
-      );
-    }
+  
     
     return NextResponse.json(
       { error: 'Internal server error' },

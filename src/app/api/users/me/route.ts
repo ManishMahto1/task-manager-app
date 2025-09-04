@@ -20,8 +20,8 @@ export async function GET(request: NextRequest) {
         updatedAt: user.updatedAt,
       }
     });
-  } catch (error) {
-    console.error('Get user error:', error);
+  } catch  {
+    //console.error('Get user error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
